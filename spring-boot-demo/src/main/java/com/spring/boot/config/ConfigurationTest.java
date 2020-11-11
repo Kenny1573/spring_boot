@@ -1,8 +1,6 @@
 package com.spring.boot.config;
 
 
-import com.spring.boot.service.HelloService;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -12,10 +10,10 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class ConfigurationTest {
-
-    @Bean
-    public HelloService getHello(){
-        System.out.println("配置类向容器中添加了组件");
-        return new HelloService();
-    }
+//
+//    @Bean
+//    public HelloService getHello(){
+//        System.out.println("配置类向容器中添加了组件");
+//        return new HelloService();
+//    }
 }
