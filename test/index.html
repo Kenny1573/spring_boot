@@ -34,7 +34,7 @@
 			 		shelf[k][j]=0; 
 			 	}
 			 }
-			 var objectArray=new Array();
+			 
 			 var totalNum=0;
 			 var shengNum=0;
 			 var wanchengNum=0;
@@ -52,70 +52,113 @@
 						wanchengNum=wanchengNum+1;
 						$("#label-no").text(shengNum);
 						$("#label-ok").text(wanchengNum);
-					},3000);			  
+					},5000);			  
 				}
 				//阿姨夹油条
 				function myFunction() {
 				    setInterval(function(){ 
-						// for(var m=0;m<objectArray.length;m++)
-						// 	objectArray[m]="";
+						var objectArray=new Array();
 						sss:
 						for(var i=0;i<10;i++){
 							//mmm:
 							for(var j=0;j<10;j++){
+								//随机夹
 								if(timer[i][j]==2){
 									var str=(i+1)+"-"+(j+1);
-									$("#"+str).attr("background","blank.png");
-									timer[i][j]=0;
-									tArray[i][j]=0;
-									wanchengNum=wanchengNum-1;
-									totalNum=totalNum-1;
-									$("#label-num").text(totalNum);
-									$("#label-ok").text(wanchengNum);
-									nnn:
-									for(var m=0;m<10;m++)
-										for(var n=0;n<10;n++){
-											if(shelf[m][n]==0){
-												var c;
-												switch(m){
-													case 0:c='a';break;
-													case 1:c='b';break;
-													case 2:c='c';break;
-													case 3:c='d';break;
-													case 4:c='e';break;
-													case 5:c='f';break;
-													case 6:c='g';break;
-													case 7:c='h';break;
-													case 8:c='i';break;
-													case 9:c='j';break;
-													default:c='n';
-												}
-												shelf[m][n]=1;
-												var str1=c+"-"+(n+1);
-												//console.log(str1);
-												$("#"+str1).attr("background","wancheng.jpg");
-												bs4pop.notice('阿姨夹了一根油条', {position: 'bottomcenter'});
-												break nnn;
-											}
-										}
-									break sss;
-									//objectArray.push(str);
+									objectArray.push(str);
+								}
+								//顺序夹
+								// if(timer[i][j]==2){
+								// 	var str=(i+1)+"-"+(j+1);
+								// 	$("#"+str).attr("background","blank.png");
+								// 	timer[i][j]=0;
+								// 	tArray[i][j]=0;
+								// 	wanchengNum=wanchengNum-1;
+								// 	totalNum=totalNum-1;
+								// 	$("#label-num").text(totalNum);
+								// 	$("#label-ok").text(wanchengNum);
+								// 	nnn:
+								// 	for(var m=0;m<10;m++)
+								// 		for(var n=0;n<10;n++){
+								// 			if(shelf[m][n]==0){
+								// 				var c;
+								// 				switch(m){
+								// 					case 0:c='a';break;
+								// 					case 1:c='b';break;
+								// 					case 2:c='c';break;
+								// 					case 3:c='d';break;
+								// 					case 4:c='e';break;
+								// 					case 5:c='f';break;
+								// 					case 6:c='g';break;
+								// 					case 7:c='h';break;
+								// 					case 8:c='i';break;
+								// 					case 9:c='j';break;
+								// 					default:c='n';
+								// 				}
+								// 				shelf[m][n]=1;
+								// 				var str1=c+"-"+(n+1);
+								// 				//console.log(str1);
+								// 				$("#"+str1).attr("background","wancheng.jpg");
+								// 				bs4pop.notice('阿姨夹了一根油条', {position: 'bottomcenter'});
+								// 				break nnn;
+								// 			}
+								// 		}
+								// 	break sss;
+								}
+							}						
+						var index = Math.floor((Math.random()*objectArray.length));
+						m=objectArray[index].charAt(0);
+						n=objectArray[index].charAt(2);
+						var x =parseInt(m);
+						var y=parseInt(n);
+						timer[x-1][y-1]=0;
+						tArray[x-1][y-1]=0;
+						$("#"+objectArray[index]).attr("background","blank.png");
+						wanchengNum=wanchengNum-1;
+						totalNum=totalNum-1;
+						$("#label-num").text(totalNum);
+						$("#label-ok").text(wanchengNum);
+						nnn :
+						for(var m=0;m<10;m++)
+							for(var n=0;n<10;n++){
+								if(shelf[m][n]==0){
+									var c;
+									switch(m){
+										case 0:c='a';break;
+										case 1:c='b';break;
+										case 2:c='c';break;
+										case 3:c='d';break;
+										case 4:c='e';break;
+										case 5:c='f';break;
+										case 6:c='g';break;
+										case 7:c='h';break;
+										case 8:c='i';break;
+										case 9:c='j';break;
+										default:c='n';
+									}
+									shelf[m][n]=1;
+									var str1=c+"-"+(n+1);
+									var left = $("#"+objectArray[index]).offset().left;//元素相当于窗口的左边的偏移量
+									var top = $("#"+objectArray[index]).offset().top;//元素相对于窗口的上边的偏移量
+									var width = $("#"+objectArray[index]).width();
+									var height = $("#"+objectArray[index]).height();
+									var left1=$("#"+str1).offset().left;
+									var top1=$("#"+str1).offset().top;
+									//移动动画
+									$("#box").css({'top':top,'left':left});
+									$("#box").css('display','block');
+									//$("#box").css("background",'url(wancheng.jpg)');
+									bs4pop.notice('阿姨夹了一根油条', {position: 'bottomcenter'});
+									$("#box").animate({'left': left1,'top':top1,'width':61,'height':61}, "slow",function(){
+										$("#"+str1).attr("background","wancheng.jpg");
+										$("#box").css('display','none');
+									});
+									break nnn;
 								}
 							}
-						}
-						// var index = Math.floor((Math.random()*objectArray.length));
-						// console.log(objectArray);
-						// console.log(objectArray[index]);
-						
-						// m=objectArray[index].charAt(0);
-						// n=objectArray[index].charAt(2);
-						// var x =parseInt(m);
-						// var y=parseInt(n);
-						// console.log(timer[1][1]);
-						// //tArray[parseInt(m)][parseInt(n)]=0;
-						// // $("#"+objectArray[index]).attr("background","blank.png");
 						// //清空数组
-						// objectArray.length=0;
+						objectArray.length=0;
+						
 					}, 3000);
 				}
 				
@@ -434,6 +477,8 @@
 				</table>
 		    </div>
 		</div>
-		
+		<div id="box" >
+			
+		</div>
 	</body>
 </html>

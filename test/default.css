@@ -48,3 +48,12 @@ table td{
 	top: 0px;
 	right: 0px;
 }
+
+#box{
+	display: none;
+	height: 42.67px;
+	width: 42.67px;
+	position: absolute;
+	background-image: url(wancheng.jpg);
+	background-size: 100% 100%;
+}
