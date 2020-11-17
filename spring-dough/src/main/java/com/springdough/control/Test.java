@@ -17,7 +17,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class Test {
     public static void main(String[] args) {
         //Hashtable<String, Dough> stringDoughHashtable = new Hashtable<>();
-        CopyOnWriteArrayList<Dough> doughs = new CopyOnWriteArrayList<Dough>();
+        CopyOnWriteArrayList<Dough> doughs = new CopyOnWriteArrayList<>();
         ArrayList<Dough> collections = new ArrayList<>();
         Produce produce = new Produce(doughs);
         Consumer consumer = new Consumer(doughs, collections);
@@ -68,7 +68,7 @@ class Produce implements Runnable{
         localTime=LocalTime.now();
         iNum=0;
         jNum=0;
-        Dough dough;
+        //Dough dough;
         //for (Iterator<String> iterator = stringDoughHashtable.keySet().iterator(); iterator.hasNext();) {
         for(Dough d :list){
             //String key=iterator.next();
@@ -120,7 +120,7 @@ class Consumer implements Runnable{
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-                        continue;
+                        //continue;
                     }
                 }
             }

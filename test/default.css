@@ -21,6 +21,8 @@ table td{
     left: 0px;
 	position: absolute;
 	top: 0px;
+	background-image: url(timg.gif);
+	background-size: 100% 100%;
 }
 #div-pot-container{
 	position: relative;
@@ -50,6 +52,14 @@ table td{
 }
 
 #box{
+	display: none;
+	height: 42.67px;
+	width: 42.67px;
+	position: absolute;
+	background-image: url(wancheng.jpg);
+	background-size: 100% 100%;
+}
+#throwBox{
 	display: none;
 	height: 42.67px;
 	width: 42.67px;
