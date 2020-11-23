@@ -6,7 +6,7 @@
 		 <link rel="stylesheet" type="text/css" href="./default.css">
 		 <link rel="stylesheet" href="bootstrap-4.0.0-dist/css/bootstrap.css">
 		 <link rel="stylesheet" href="./bs4.pop.css">
-		 <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"></script>
+		 <script src="./jquery-2.1.1.min.js"></script>
 		 <script src="bs4.pop.js"></script>
 		 <script src="./bootstrap-4.0.0-dist/js/bootstrap.js"></script>
 		 <script>
@@ -173,15 +173,28 @@
 							if(tArray[i][j]!=1){
 								var str=(i+1)+"-"+(j+1);
 								//alert(str);
-								$("#"+str).attr("background","sheng.jpg");
-								tArray[i][j]=1;
-								timer[i][j]=1;
-								setTime(i,j);
-								totalNum=totalNum+1;
-								shengNum=shengNum+1;
-								$("#label-num").text(totalNum);
-								$("#label-no").text(shengNum);
-								return false;
+								// var left = $("#image-add").offset().left;//元素相当于窗口的左边的偏移量
+								// var top = $("#image-add").offset().top;//元素相对于窗口的上边的偏移量
+								// var width = $("#image-add").width();
+								// var height = $("#image-add").height();
+								// var left1=$("#"+str).offset().left;
+								// var top1=$("#"+str).offset().top;
+								// $("#throwBox").css({'top':top,'left':left});
+								// $("#throwBox").css('display','block');
+								// $("#throwBox").animate({'left': left1,'top':top1,'width':61,'height':61}, "fast",function(){
+								// 	$("#"+str).attr("background","sheng.jpg");
+								// 	$("#throwBox").css('display','none');
+									$("#"+str).attr("background","sheng.jpg");
+									tArray[i][j]=1;
+									timer[i][j]=1;
+									setTime(i,j);
+									totalNum=totalNum+1;
+									shengNum=shengNum+1;
+									$("#label-num").text(totalNum);
+									$("#label-no").text(shengNum);
+									return false;
+								// });
+								
 							}
 						}
 					}
