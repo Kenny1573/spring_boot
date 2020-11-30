@@ -1,5 +1,7 @@
 package com.kenny.fangfayingyong;
 
+import java.util.Optional;
+
 /**
  * @author kenny
  * @version 1.0
@@ -8,7 +10,16 @@ package com.kenny.fangfayingyong;
 public class User {
     private String name;
     private Double money;
+    private String position;
+    private String email;
 
+
+    public Optional<String> getPosition(){
+        return Optional.ofNullable(position);
+    }
+    public void setPosition(String position){
+        this.position=position;
+    }
     User() {
         super();
     }
@@ -31,5 +42,23 @@ public class User {
 
     public void setMoney(Double money) {
         this.money = money;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", money=" + money +
+                ", position='" + position + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }
