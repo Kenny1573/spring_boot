@@ -3,7 +3,10 @@ package com.kenny.stream;
 import com.kenny.fangfayingyong.User;
 
 import java.time.LocalDate;
-import java.util.*;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Random;
 import java.util.stream.Stream;
 
 /**
@@ -20,13 +23,13 @@ public class IntermediateOperationClass {
      * distinct：通过流中元素的 hashCode() 和 equals() 去除重复元素
      */
     public static void main(String[] args) {
-        Integer[] arrays={1,2,3,4,5,6,7,8,9,10,11,12,13,14};
+        Integer[] arrays = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14};
         Stream<Integer> arrays1 = Stream.of(arrays);
 
         Stream<Integer> distinct = arrays1.filter(s -> s > 0)
-                                          .limit(10)
-                                          .skip(2)
-                                          .distinct();
+                .limit(10)
+                .skip(2)
+                .distinct();
         distinct.forEach(System.out::println);
 
     }
@@ -37,7 +40,7 @@ public class IntermediateOperationClass {
  * map：接收一个函数作为参数，该函数会被应用到每个元素上，并将其映射成一个新的元素。
  * flatMap：接收一个函数作为参数，将流中的每个值都换成另一个流，然后把所有流连接成一个流。
  */
-class test1{
+class test1 {
     public static void main(String[] args) {
         List<String> strings = Arrays.asList("1,2,3", "a,b,c");
         Stream<String> stringStream = strings.stream().map(s -> s.replaceAll(",", ""));
@@ -54,36 +57,37 @@ class test1{
 /**
  * 排序
  * sorted()：自然排序，流中元素需实现Comparable接口
- *  sorted(Comparator com)：定制排序，自定义Comparator排序器
+ * sorted(Comparator com)：定制排序，自定义Comparator排序器
  */
-class test4{
+class test4 {
     public static void main(String[] args) {
         List<String> strings = Arrays.asList("1a", "2b", "3c");
         Stream<String> sorted = strings.stream().sorted();
         sorted.forEach(System.out::println);
 
         LinkedList<User> users = new LinkedList<>();
-        for(int i=0;i<5;i++){
-            users.push(new User(""+ LocalDate.now().getMonth(),(double)new Random().nextInt(100)));
+        for (int i = 0; i < 5; i++) {
+            users.push(new User("" + LocalDate.now().getMonth(), (double) new Random().nextInt(100)));
         }
         users.parallelStream().sorted((o1, o2) -> {
             if (o1.getMoney().equals(o2.getMoney())) {
-                return (int) (o1.getMoney()+o2.getMoney());
+                return (int) (o1.getMoney() + o2.getMoney());
             } else {
-                return (int) (o1.getMoney()-o2.getMoney());
+                return (int) (o1.getMoney() - o2.getMoney());
             }
         }).forEach(System.out::println);
     }
 }
+
 /**
  * peek：如同于map，能得到流中的每一个元素。
  * 但map接收的是一个Function表达式，有返回值；而peek接收的是Consumer表达式，没有返回值。
  */
-class tes5{
+class tes5 {
     public static void main(String[] args) {
         LinkedList<User> users = new LinkedList<>();
-        for(int i=0;i<5;i++){
-            users.push(new User(""+ LocalDate.now().getMonth(),(double)new Random().nextInt(100)));
+        for (int i = 0; i < 5; i++) {
+            users.push(new User("" + LocalDate.now().getMonth(), (double) new Random().nextInt(100)));
         }
         users.parallelStream().peek(o1 -> {
             o1.setMoney(100d);
